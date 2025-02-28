@@ -7,6 +7,7 @@ export default function ShiftProgressTracker() {
   const [endTime, setEndTime] = useState('17:00');
   const [currentTime, setCurrentTime] = useState(new Date());
   const [progress, setProgress] = useState(0);
+  const [payPerHour, setPayPerHour] = useState(0);
   
   
   // Update calculation function when time inputs change
@@ -73,7 +74,10 @@ export default function ShiftProgressTracker() {
           <div class="flex items-center justify-between mb-2">
             <div class="text-xs ">{startTime}</div>
             <div class="text-right">
-              <span class="text-xs text-indigo-600">{progress}%</span>
+              <div class="text-xs text-indigo-600">{progress}%</div>
+                <div class="text-xs text-indigo-600">
+                $ {((payPerHour * (parseInt(endTime) - parseInt(startTime))) * (progress / 100)).toFixed(2)}
+                </div>
             </div>
             <div class="text-xs ">{endTime}</div>
           </div>
@@ -87,12 +91,12 @@ export default function ShiftProgressTracker() {
         </div>
       </div>
       
-      <div class="grid grid-cols-2 gap-4 text-center">
+      <div class="grid grid-cols-3 gap-4 text-center">
         <div>
           <div class="text-sm  mb-1">Shift Start</div>
           <input 
             type="time" 
-            class="w-full p-2 border border-gray-300 rounded focus:ring-indigo-500 focus:border-indigo-500"
+            class="text-center w-full p-2 border border-gray-300 rounded focus:ring-indigo-500 focus:border-indigo-500"
             value={startTime}
             onChange={(e) => {
               const target = e.target as HTMLInputElement;
@@ -102,10 +106,23 @@ export default function ShiftProgressTracker() {
         </div>
 
         <div>
+          <div class="block text-sm  mb-1">Hourly Pay</div>
+          <input 
+            type="form" 
+            class="w-full p-2 border text-center border-gray-300 rounded focus:ring-indigo-500 focus:border-indigo-500"
+            value={payPerHour}
+            onChange={(e) => {
+              const target = e.target as HTMLInputElement;
+              setPayPerHour(target.value);
+            }}
+          />
+        </div>
+
+        <div>
           <div class="block text-sm  mb-1">Shift End</div>
           <input 
             type="time" 
-            class="w-full p-2 border border-gray-300 rounded focus:ring-indigo-500 focus:border-indigo-500"
+            class="text-center w-full p-2 border border-gray-300 rounded focus:ring-indigo-500 focus:border-indigo-500"
             value={endTime}
             onChange={(e) => {
               const target = e.target as HTMLInputElement;
