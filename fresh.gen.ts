@@ -7,7 +7,7 @@ import * as $_app from "./routes/_app.tsx";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
-import * as $Counter from "./islands/Counter.tsx";
+import * as $Calendar from "./islands/Calendar.tsx";
 import * as $ShiftTracker from "./islands/ShiftTracker.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -20,7 +20,7 @@ const manifest = {
     "./routes/index.tsx": $index,
   },
   islands: {
-    "./islands/Counter.tsx": $Counter,
+    "./islands/Calendar.tsx": $Calendar,
     "./islands/ShiftTracker.tsx": $ShiftTracker,
   },
   baseUrl: import.meta.url,

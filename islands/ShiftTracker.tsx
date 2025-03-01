@@ -128,7 +128,7 @@ export default function ShiftProgressTracker() {
     
     const totalHours = hours + (minutes / 60);
 
-    
+
     const fullEarnings = totalHours * parseFloat(payPerHour || 0);
     
     return ((fullEarnings * progress) / 100).toFixed(2);
@@ -154,8 +154,8 @@ export default function ShiftProgressTracker() {
   return (
     <div class="w-full max-w-4xl mx-auto p-4 bg-white rounded-lg shadow-lg">
       <div class="mb-8">
-        <div class="text-lg text-center justify-center mb-2">
-          Current Shift
+        <div class="text-xl text-center justify-center mb-2 font-semibold">
+          Enter Shift
         </div>
         
         <div class="relative pt-1">
