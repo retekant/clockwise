@@ -116,7 +116,7 @@ export default function Calendar() {
                   setShifts([]);
                   window.dispatchEvent(new CustomEvent('shiftsUpdated'));
                 }}
-                class="text-red-500 hover:text-red-700"
+                class="bg-red-500 text-white p-2 rounded hover:bg-red-700"
               >
                 Delete All
               </button>
@@ -146,7 +146,7 @@ export default function Calendar() {
                   <div>
                     <button 
                       onClick={() => deleteShift(shift.id)}
-                      class="text-red-500 hover:text-red-700"
+                      class="bg-red-500 text-white p-2 rounded hover:bg-red-700"
                     >
                       Delete
                     </button>
