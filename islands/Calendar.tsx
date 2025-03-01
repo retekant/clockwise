@@ -2,7 +2,13 @@ import { useState, useEffect } from "preact/hooks";
 
 export default function Calendar() {
   const [shifts, setShifts] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
+
+
+  const toggleDropdown = () => { 
+    setIsOpen(!isOpen); 
+    };
 
   useEffect(() => {
     const savedShifts = localStorage.getItem('shift_history');
@@ -11,8 +17,12 @@ export default function Calendar() {
         const parsedShifts = JSON.parse(savedShifts);
         if (Array.isArray(parsedShifts)) {
           setShifts(parsedShifts);
+
+          
         }
-      } catch (e) {
+      } 
+      
+      catch (e) {
         console.error("Error parsing shifts from localStorage:", e);
       }
     }
@@ -26,7 +36,9 @@ export default function Calendar() {
           if (Array.isArray(parsedShifts)) {
             setShifts(parsedShifts);
           }
-        } catch (error) {
+        } 
+        
+        catch (error) {
           console.error("Error parsing shifts from storage event:", error);
         }
       }
@@ -70,7 +82,24 @@ export default function Calendar() {
 
   return (
     <div class="w-full max-w-4xl mx-auto p-4 bg-white rounded-lg shadow-lg mt-10">
-      <h2 class="text-xl font-semibold mb-4 text-center">Shifts</h2>
+        <div 
+        class="flex flex-col-2 justify-between p-4 cursor-pointer items-center"
+        onClick={toggleDropdown}
+      >
+        <div class="text-xl font-semibold text-center w-full">
+            Shifts
+
+            
+
+        </div>
+
+        <div class="text-sm">
+                {isOpen ? '▲' : '▼'}
+            </div>
+        
+      </div>
+
+     {isOpen && (
       
       <div class="rounded-lg">
         <div class=" p-4 border-b-2">
@@ -105,7 +134,11 @@ export default function Calendar() {
             shifts.map(shift => {
               return (
                 <div key={shift.id} class="p-4 grid grid-cols-6 text-sm">
-                  <div>{new Date(shift.date).toLocaleDateString()}</div>
+                <div>{(() => {
+                    const [year, month, day] = shift.date.split('-');
+                    return `${month}/${day}/${year}`;
+                })()}</div>
+                  
                   <div>{shift.startTime}</div>
                   <div>{shift.endTime}</div>
                   <div>{shift.duration}</div>
@@ -123,10 +156,10 @@ export default function Calendar() {
             })
           )}
         </div>
-      </div>
+      </div>)}
       
 
-      {shifts.length > 0 && (
+      {shifts.length > 0 && isOpen && (
         <div class="mt-6 rounded-lg p-4 text-center">
 
           <div class="text-lg font-medium mb-2">Summary</div>

@@ -9,6 +9,7 @@ export default function ShiftProgressTracker() {
   const [progress, setProgress] = useState(0);
   const [payPerHour, setPayPerHour] = useState(0);
   const [date, setDate] = useState(formatDateForInput(new Date()));
+  const [lunchBreak, setLunchBreak] = useState(false);
 
   
   function formatDateForInput(date) {
@@ -66,7 +67,9 @@ export default function ShiftProgressTracker() {
         if (Array.isArray(parsedShifts)) {
           shifts = parsedShifts;
         }
-      } catch (e) {
+      } 
+      
+      catch (e) {
         console.error("Error parsing shifts from localStorage:", e);
       }
     }
@@ -77,9 +80,11 @@ export default function ShiftProgressTracker() {
     let hours = endHours - startHours;
     let minutes = endMinutes - startMinutes;
     
-    
+  
+
     const totalHours = hours + (minutes / 60);
-    const earnings = totalHours * parseFloat(payPerHour);
+
+    const earnings = (lunchBreak ? totalHours-0.5 : totalHours) * parseFloat(payPerHour);
     
     const newShift = {
       id: Date.now(),
@@ -129,7 +134,7 @@ export default function ShiftProgressTracker() {
     const totalHours = hours + (minutes / 60);
 
 
-    const fullEarnings = totalHours * parseFloat(payPerHour || 0);
+    const fullEarnings = (lunchBreak ? totalHours-0.5 : totalHours) * parseFloat(payPerHour || 0);
     
     return ((fullEarnings * progress) / 100).toFixed(2);
   };
@@ -161,10 +166,11 @@ export default function ShiftProgressTracker() {
         <div class="relative pt-1">
           <div class="flex items-center justify-between mb-2">
             <div class="text-xs">{startTime}</div>
-            <div class="text-right">
+            <div class="text-right px-5 text-center">
               <div class="text-xs text-indigo-600">{progress}%</div>
+
               <div class="text-xs text-indigo-600">
-                $ {calculateCurrentEarnings()}
+                ${calculateCurrentEarnings()}
               </div>
             </div>
             <div class="text-xs">{endTime}</div>
@@ -235,13 +241,23 @@ export default function ShiftProgressTracker() {
 
       
       
-      <div class="flex justify-center">
+      <div class="flex justify-center flex flex-col items-center ">
         <button 
           onClick={saveShift}
           class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded transition duration-300"
         >
           Save Shift
         </button>
+        <div class="flex items-center mt-4">
+          <input 
+            type="checkbox" id="lunchBreak" checked={lunchBreak}
+            onChange={(e) => setLunchBreak(e.target.checked)}
+            class="h-4 w-4 rounded"
+          />
+          <label htmlFor="lunchBreak" class="ml-2 text-sm">
+            30 Minute Lunch Break
+          </label>
+        </div>
       </div>
     </div>
   );
