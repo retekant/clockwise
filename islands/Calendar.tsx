@@ -15,10 +15,9 @@ export default function Calendar() {
     if (savedShifts) {
       try {
         const parsedShifts = JSON.parse(savedShifts);
+        
         if (Array.isArray(parsedShifts)) {
           setShifts(parsedShifts);
-
-          
         }
       } 
       
@@ -81,7 +80,7 @@ export default function Calendar() {
   };
 
   return (
-    <div class="w-full max-w-4xl mx-auto p-4 bg-white rounded-lg shadow-lg mt-10">
+    <div class="w-full max-w-4xl mx-auto p-4 bg-white rounded-lg shadow-lg">
         <div 
         class="flex flex-col-2 justify-between p-4 cursor-pointer items-center"
         onClick={toggleDropdown}
@@ -111,7 +110,9 @@ export default function Calendar() {
             <div>Earnings</div>
             <div>
               <button 
+
                 onClick={() => {
+
                   localStorage.setItem('shift_history', JSON.stringify([]));
                   setShifts([]);
                   window.dispatchEvent(new CustomEvent('shiftsUpdated'));
