@@ -85,7 +85,7 @@ export default function Calendar() {
         class="flex flex-col-2 justify-between p-4 cursor-pointer items-center"
         onClick={toggleDropdown}
       >
-        <div class="text-xl font-semibold text-center w-full">
+        <div class="text-2xl font-semibold text-center w-full text-indigo-700">
             Shifts
 
             

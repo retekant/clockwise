@@ -103,7 +103,7 @@ export default function ProgressTrackerIsland() {
 
   return (
     <div class="w-full max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <div class="text-2xl text-center mb-4 font-semibold">
+      <div class="text-2xl text-center mb-4 font-semibold text-indigo-700">
         Shift Progress
       </div>
       

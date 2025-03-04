@@ -93,7 +93,7 @@ export default function ShiftProgressTracker() {
   return (
     <div class="w-full max-w-4xl mx-auto p-4 bg-white rounded-lg shadow-lg ">
       <div class="mb-8">
-        <div class="text-2xl text-center justify-center mb-2 font-semibold">
+        <div class="text-2xl text-center justify-center mb-2 font-semibold text-indigo-700">
           Enter Shift
         </div>
         
