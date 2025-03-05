@@ -108,7 +108,7 @@ export default function ProgressTrackerIsland() {
       </div>
       
       <div class="relative pt-1">
-        <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center justify-between mb-3 ">
           <div class="text-sm font-medium">{startTime}</div>
           <div class="text-sm font-medium">{endTime}</div>
         </div>
@@ -126,7 +126,7 @@ export default function ProgressTrackerIsland() {
           <div class="text-4xl font-bold text-indigo-700 mt-2">
             ${calculateCurrentEarnings()}
           </div>
-          <div class="text-sm">earned so far</div>
+          <div class="text-sm text-gray-700">earned so far</div>
         </div>
       </div>
     </div>

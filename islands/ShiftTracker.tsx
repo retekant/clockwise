@@ -104,7 +104,7 @@ export default function ShiftProgressTracker() {
           <div class="text-sm mb-1">Date</div>
           <input 
             type="date" 
-            class="text-center w-full p-2 border border-gray-300 rounded focus:ring-indigo-500 focus:border-indigo-500"
+            class="text-center w-full p-2 border border-gray-300 rounded shadow-sm"
             value={date}
             onChange={(e) => {
               setDate(e.target.value);
@@ -116,7 +116,7 @@ export default function ShiftProgressTracker() {
           <div class="text-sm mb-1">Shift Start</div>
           <input 
             type="time" 
-            class="text-center w-full p-2 border border-gray-300 rounded focus:ring-indigo-500 focus:border-indigo-500"
+            class="text-center w-full p-2 border border-gray-300 rounded shadow-sm"
             value={startTime}
             onChange={(e) => {
               setStartTime(e.target.value);
@@ -130,7 +130,7 @@ export default function ShiftProgressTracker() {
           <div class="block text-sm mb-1">Shift End</div>
           <input 
             type="time" 
-            class="text-center w-full p-2 border border-gray-300 rounded focus:ring-indigo-500 focus:border-indigo-500"
+            class="text-center w-full p-2 border border-gray-300 rounded shadow-sm"
             value={endTime}
             onChange={(e) => {
               setEndTime(e.target.value);
@@ -142,7 +142,7 @@ export default function ShiftProgressTracker() {
           <div class="block text-sm mb-1">Hourly Pay</div>
           <input 
             type="number" 
-            class="w-full p-2 border text-center border-gray-300 rounded focus:ring-indigo-500 focus:border-indigo-500"
+            class="w-full p-2 border text-center border-gray-300 rounded shadow-sm"
             value={payPerHour}
             onChange={(e) => {
               setPayPerHour(e.target.value);
@@ -158,7 +158,8 @@ export default function ShiftProgressTracker() {
       <div class="flex justify-center flex flex-col items-center ">
         <button 
           onClick={saveShift}
-          class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded transition duration-300"
+          class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded
+           transition duration-300 shadow-md"
         >
           Save Shift
         </button>
@@ -168,7 +169,7 @@ export default function ShiftProgressTracker() {
             onChange={(e) => setLunchBreak(e.target.checked)}
             class="h-4 w-4 rounded"
           />
-          <label htmlFor="lunchBreak" class="ml-2 text-sm">
+          <label htmlFor="lunchBreak" class="ml-2 text-sm text-gray-700">
             30 Minute Lunch Break
           </label>
         </div>
