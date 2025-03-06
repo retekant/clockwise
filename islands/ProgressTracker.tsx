@@ -102,7 +102,7 @@ export default function ProgressTrackerIsland() {
   }, [startTime, endTime]);
 
   return (
-    <div class="w-full max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <div class="w-full max-w-4xl mx-auto p-9 bg-white rounded-lg shadow-lg pb-14">
       <div class="text-2xl text-center mb-4 font-semibold text-indigo-700">
         Shift Progress
       </div>
@@ -120,7 +120,7 @@ export default function ProgressTrackerIsland() {
           ></div>
         </div>
         
-        <div class="flex flex-col items-center text-center mb-2">
+        <div class="flex flex-col items-center text-center mt-11">
           <div class="text-sm text-indigo-600 font-medium">{progress}% Complete</div>
 
           <div class="text-4xl font-bold text-indigo-700 mt-2">

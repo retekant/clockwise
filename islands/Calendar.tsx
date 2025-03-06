@@ -80,7 +80,7 @@ export default function Calendar() {
   };
 
   return (
-    <div class="w-full max-w-4xl mx-auto p-4 bg-white rounded-lg shadow-lg pb-4">
+    <div class="w-full max-w-[97.5%] p-4 bg-white rounded-lg shadow-lg pb-4">
         <div 
         class="flex flex-col-2 justify-between p-4 cursor-pointer items-center"
         onClick={toggleDropdown}
