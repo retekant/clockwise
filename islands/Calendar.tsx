@@ -80,7 +80,7 @@ export default function Calendar() {
   };
 
   return (
-    <div class="w-full max-w-[97.5%] p-4 bg-white rounded-lg shadow-lg pb-4">
+    <div class="w-full max-w-[100%] p-4 bg-white rounded-lg shadow-lg pb-4">
         <div 
         class="flex flex-col-2 justify-between p-4 cursor-pointer items-center"
         onClick={toggleDropdown}
@@ -148,7 +148,7 @@ export default function Calendar() {
                   <div class="flex items-center justify-center">
                   <button 
                     onClick={() => deleteShift(shift.id)}
-                    class="bg-red-500 text-white p-2 rounded hover:bg-red-700"
+                    class="bg-red-500 text-white p-2 rounded hover:bg-red-700 text-xs sm:text-sm md:text-base md:p-2 sm:p-1.5 p-1"
                   >
                     Delete
                   </button>

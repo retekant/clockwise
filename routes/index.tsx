@@ -7,17 +7,19 @@ import ProgressTracker from "../islands/ProgressTracker.tsx";
    //  flex flex-col space-y-8">
 export default function Home() {
   return (
-    <div class="min-h-screen min-w-screen flex-row bg-[#d35b5b] pb-10">
-      <div class="p-5 flex flex-row gap-3">
-        <div class="w-[90%]">
-       <ProgressTracker />
-       </div>
-       <div class="">
-        <ShiftTracker />
+    <div className="min-h-screen min-w-screen bg-[#d35b5b] pb-10">
+      <div className="p-5 flex flex-col md:flex-row gap-3">
+        <div className="w-full md:w-[60%] mb-3 md:mb-0">
+          <ProgressTracker />
+        </div>
+        <div className="w-full md:w-[40%]">
+          <ShiftTracker />
         </div>
       </div>
-      <div class="flex justify-center"><Calendar /></div>
-
+      <div className="flex justify-center px-5">
+          <Calendar />
       </div>
+
+    </div>
   );
 }
