@@ -104,10 +104,10 @@ export default function Calendar() {
         <div class=" p-4 bg-indigo-100 rounded-t-lg">
           <div class="grid grid-cols-6 font-medium text-sm ">
             <div class="flex items-center justify-center">Date</div>
-            <div class="flex items-center justify-center">Start Time</div>
-            <div class="flex items-center justify-center">End Time</div>
-            <div class="flex items-center justify-center">Duration</div>
-            <div class="flex items-center justify-center">Earnings</div>
+            <div class="flex items-center justify-center">Start</div>
+            <div class="flex items-center justify-center">End</div>
+            <div class="flex items-center justify-center">Time</div>
+            <div class="flex items-center justify-center">USD</div>
             <div class="flex items-center justify-center">
               <button 
 
@@ -126,8 +126,7 @@ export default function Calendar() {
           </div>
         </div>
         
-        <div class="bg-gray-100 bg-opacity-80 text-gray-700 text-lg rounded-b-lg text-center align-text-center
-        ">
+        <div class="bg-gray-100 bg-opacity-80 text-gray-700 text-lg rounded-b-lg text-center align-text-center">
           {shifts.length === 0 ? (
             <div class="px-4 py-6 text-center">
               No shifts recorded yet
@@ -135,23 +134,33 @@ export default function Calendar() {
           ) : (
             shifts.map(shift => {
               return (
-                <div key={shift.id} class="p-4 grid grid-cols-6 text-sm ">
-                <div class="flex items-center justify-center">{(() => {
-                  const [year, month, day] = shift.date.split('-');
-                  return `${month}/${day}/${year}`;
-                })()}</div>
+                <div key={shift.id} class="p-4 grid grid-cols-6 text-sm">
+                  <div class="flex items-center justify-center overflow-hidden">
+                    <div class="truncate">{(() => {
+                      const [year, month, day] = shift.date.split('-');
+                      return `${month}/${day}/${year}`;
+                    })()}</div>
+                  </div>
                   
-                  <div class="flex items-center justify-center">{shift.startTime}</div>
-                  <div class="flex items-center justify-center">{shift.endTime}</div>
-                  <div class="flex items-center justify-center">{shift.duration}</div>
-                  <div class="flex items-center justify-center">${shift.earnings}</div>
+                  <div class="flex items-center justify-center overflow-hidden">
+                    <div class="truncate">{shift.startTime}</div>
+                  </div>
+                  <div class="flex items-center justify-center overflow-hidden">
+                    <div class="truncate">{shift.endTime}</div>
+                  </div>
+                  <div class="flex items-center justify-center overflow-hidden">
+                    <div class="truncate">{shift.duration}</div>
+                  </div>
+                  <div class="flex items-center justify-center overflow-hidden">
+                    <div class="truncate">${shift.earnings}</div>
+                  </div>
                   <div class="flex items-center justify-center">
-                  <button 
-                    onClick={() => deleteShift(shift.id)}
-                    class="bg-red-500 text-white p-2 rounded hover:bg-red-700 text-xs sm:text-sm md:text-base md:p-2 sm:p-1.5 p-1"
-                  >
-                    Delete
-                  </button>
+                    <button 
+                      onClick={() => deleteShift(shift.id)}
+                      class="bg-red-500 text-white p-2 rounded hover:bg-red-700 text-xs sm:text-sm md:text-base md:p-2 sm:p-1.5 p-1"
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
               );

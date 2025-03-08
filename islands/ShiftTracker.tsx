@@ -64,7 +64,9 @@ export default function ShiftProgressTracker() {
     const updatedShifts = [...shifts, newShift];
     localStorage.setItem('shift_history', JSON.stringify(updatedShifts));
     
+    // Dispatch both events for compatibility
     window.dispatchEvent(new Event('storage'));
+    window.dispatchEvent(new CustomEvent('shiftsUpdated'));
   };
     
   //Local storage loading on component mount
