@@ -1,6 +1,7 @@
 import ShiftTracker from "../islands/ShiftTracker.tsx";
 import Calendar from "../islands/Calendar.tsx";
 import ProgressTracker from "../islands/ProgressTracker.tsx";
+import DataManager from "../islands/DataManager.tsx";
 
 
 //</div><div class="px-4 py-8 mx-auto bg-[#df7070] min-h-screen min-w-screen 
@@ -16,10 +17,10 @@ export default function Home() {
           <ShiftTracker />
         </div>
       </div>
-      <div className="flex justify-center px-5">
+      <div className="flex flex-col justify-center px-5 gap-3">
           <Calendar />
+          <DataManager />
       </div>
-
     </div>
   );
 }
