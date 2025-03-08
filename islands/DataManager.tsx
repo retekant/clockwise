@@ -75,10 +75,9 @@ export default function DataManager() {
           
           <input
             type="file"
-            accept=".json"
+            accept=".json,application/json"
             onChange={importData}
             class="hidden"
-            capture="filesystem"
           />
         </label>
       </div>

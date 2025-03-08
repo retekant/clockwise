@@ -8,7 +8,7 @@ import DataManager from "../islands/DataManager.tsx";
    //  flex flex-col space-y-8">
 export default function Home() {
   return (
-    <div className="min-h-screen min-w-screen bg-[#5fd679] pb-10">
+    <div className="min-h-screen min-w-screen bg-[#d65f5f] pb-10">
       <div className="p-5 flex flex-col md:flex-row gap-3">
         <div className="w-full md:w-[60%] mb-3 md:mb-0">
           <ProgressTracker />
