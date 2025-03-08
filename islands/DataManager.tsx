@@ -72,11 +72,13 @@ export default function DataManager() {
 
         <label class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded transition duration-300 shadow-md cursor-pointer">
           Import Shifts
+          
           <input
             type="file"
             accept=".json"
             onChange={importData}
             class="hidden"
+            capture="filesystem"
           />
         </label>
       </div>
