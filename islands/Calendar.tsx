@@ -171,28 +171,27 @@ export default function Calendar() {
       
 
       {shifts.length > 0 && isOpen && (
-        <div class="mt-6 p-4 text-center rounded-lg shadow-md bg-gray-200 bg-opacity-80 ">
-
+        <div class="mt-6 p-4 text-center rounded-lg shadow-md bg-gray-200 bg-opacity-80">
           <div class="text-lg font-semibold mb-2 text-indigo-700">Summary</div>
 
-          <div class="grid grid-cols-3 gap-4">
-            <div class="bg-white p-3 rounded shadow-sm">
-              <div class="text-sm ">Total Shifts</div>
-              <div class="text-xl font-semibold">{shifts.length}</div>
+          <div class="grid grid-cols-3 gap-2 sm:gap-4">
+            <div class="bg-white p-2 sm:p-3 rounded shadow-sm">
+              <div class="text-xs sm:text-sm">Total Shifts</div>
+
+              <div class="text-base sm:text-xl font-semibold">{shifts.length}</div>
             </div>
-            <div class="bg-white p-3 rounded shadow-sm">
-              <div class="text-sm ">Total Hours</div>
-              <div class="text-xl font-semibold">
+            
+            <div class="bg-white p-2 sm:p-3 rounded shadow-sm">
+              <div class="text-xs sm:text-sm">Total Hours</div>
+              <div class="text-base sm:text-xl font-semibold truncate">
                 {shifts.reduce((total, shift) => {
                   return total + (shift.totalHours || 0);
                 }, 0).toFixed(1)}
               </div>
             </div>
             <div class="bg-white p-3 rounded shadow-sm">
-
-              <div class="text-sm">Total Earnings</div>
-
-              <div class="text-xl font-semibold">
+              <div class="text-xs sm:text-sm">Total Earnings</div>
+              <div class="text-base sm:text-xl font-semibold truncate">
                 ${shifts.reduce((total, shift) => {
                   return total + parseFloat(shift.earnings || 0);
                 }, 0).toFixed(2)}

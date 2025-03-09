@@ -115,71 +115,70 @@ export default function ShiftProgressTracker() {
 
  
   return (
-    <div class="w-full mx-auto p-4 bg-white rounded-lg shadow-lg flex-shrink h-full">
-      <div class="mb-8">
-        <div class="text-2xl text-center justify-center mb-2 font-semibold text-indigo-700">
+    <div class="w-full mx-auto p-4 bg-white rounded-lg shadow-lg flex flex-col h-full">
+      <div>
+        <div class="text-2xl text-center justify-center mb-6 font-semibold text-indigo-700">
           Enter Shift
         </div>
         
-        </div>
-      
-      <div class="grid grid-cols-4 gap-4 text-center mb-6">
-        <div>
-          <div class="text-sm mb-1">Date</div>
-          <input 
-            type="date" 
-            class="text-center w-full p-2 border border-gray-300 rounded shadow-sm"
-            value={date}
-            onChange={(e) => {
-              setDate(e.target.value);
-            }}
-          />
+        <div class="grid grid-cols-4 gap-4 text-center mb-6">
+          <div>
+            <div class="text-sm mb-1">Date</div>
+            <input 
+              type="date" 
+              class="text-center w-full p-2 border border-gray-300 rounded shadow-sm"
+              value={date}
+              onChange={(e) => {
+                setDate(e.target.value);
+              }}
+            />
+          </div>
+          
+          <div>
+            <div class="text-sm mb-1">Shift Start</div>
+            <input 
+              type="time" 
+              class="text-center w-full p-2 border border-gray-300 rounded shadow-sm"
+              value={startTime}
+              onChange={(e) => {
+                setStartTime(e.target.value);
+              }}
+            />
+          </div>
+
+          
+
+          <div>
+            <div class="block text-sm mb-1">Shift End</div>
+            <input 
+              type="time" 
+              class="text-center w-full p-2 border border-gray-300 rounded shadow-sm"
+              value={endTime}
+              onChange={(e) => {
+                setEndTime(e.target.value);
+              }}
+            />
+          </div>
+
+          <div>
+            <div class="block text-sm mb-1">Hourly Pay</div>
+            <input 
+              type="number" 
+              class="w-full p-2 border text-center border-gray-300 rounded shadow-sm"
+              value={payPerHour}
+              onChange={(e) => {
+                setPayPerHour(e.target.value);
+              }}
+            />
+          </div>
         </div>
         
-        <div>
-          <div class="text-sm mb-1">Shift Start</div>
-          <input 
-            type="time" 
-            class="text-center w-full p-2 border border-gray-300 rounded shadow-sm"
-            value={startTime}
-            onChange={(e) => {
-              setStartTime(e.target.value);
-            }}
-          />
-        </div>
-
-        
-
-        <div>
-          <div class="block text-sm mb-1">Shift End</div>
-          <input 
-            type="time" 
-            class="text-center w-full p-2 border border-gray-300 rounded shadow-sm"
-            value={endTime}
-            onChange={(e) => {
-              setEndTime(e.target.value);
-            }}
-          />
-        </div>
-
-        <div>
-          <div class="block text-sm mb-1">Hourly Pay</div>
-          <input 
-            type="number" 
-            class="w-full p-2 border text-center border-gray-300 rounded shadow-sm"
-            value={payPerHour}
-            onChange={(e) => {
-              setPayPerHour(e.target.value);
-            }}
-          />
-        </div>
-
       </div>
 
 
       
       
-      <div class="flex justify-center flex flex-col items-center mt-11 ">
+      <div class="flex justify-center flex flex-col items-center mt-auto py-4">
         <button 
           onClick={saveShift}
           class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded
