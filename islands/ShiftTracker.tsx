@@ -161,7 +161,7 @@ export default function ShiftProgressTracker() {
           </div>
 
           <div>
-            <div class="block text-sm mb-1">Hourly Pay</div>
+            <div class="block text-sm mb-1 truncate">Hourly Pay</div>
             <input 
               type="number" 
               class="w-full p-2 border text-center border-gray-300 rounded shadow-sm"
