@@ -1,7 +1,5 @@
 import {useState, useEffect} from "preact/hooks";
 
-
-
 export default function ShiftProgressTracker() {
   const [startTime, setStartTime] = useState('09:00');
   const [endTime, setEndTime] = useState('17:00');
@@ -9,6 +7,7 @@ export default function ShiftProgressTracker() {
   const [payPerHour, setPayPerHour] = useState(0);
   const [date, setDate] = useState(formatDateForInput(new Date()));
   const [lunchBreak, setLunchBreak] = useState(false);
+  const [breakTime, setBreakTime] = useState('12:00');
 
   
   function formatDateForInput(date) {
@@ -43,6 +42,12 @@ export default function ShiftProgressTracker() {
     let hours = endHours - startHours;
     let minutes = endMinutes - startMinutes;
     
+    if (hours < 0) hours += 24;
+
+    if (minutes < 0) {
+      minutes += 60;
+      hours -= 1;
+    }
   
 
     const totalHours = hours + (minutes / 60);
@@ -58,38 +63,55 @@ export default function ShiftProgressTracker() {
       duration: `${hours}h ${minutes}m`,
       totalHours: totalHours,
       earnings: earnings.toFixed(2),
-      completed: true
+      completed: true,
+      lunchBreak: lunchBreak,
+      breakTime: lunchBreak ? breakTime : null,
+      breakDuration: lunchBreak ? 30 : 0 
     };
     
     const updatedShifts = [...shifts, newShift];
     localStorage.setItem('shift_history', JSON.stringify(updatedShifts));
     
-    // Dispatch both events for compatibility
     window.dispatchEvent(new Event('storage'));
     window.dispatchEvent(new CustomEvent('shiftsUpdated'));
   };
     
   //Local storage loading on component mount
   useEffect(() => {
-
     const savedStartTime = localStorage.getItem('shift_startTime');
     const savedEndTime = localStorage.getItem('shift_endTime');
     const savedPayPerHour = localStorage.getItem('shift_payPerHour');
+    const savedBreakTime = localStorage.getItem('shift_breakTime');
+    const savedLunchBreak = localStorage.getItem('shift_lunchBreak');
     
     if (savedStartTime) setStartTime(savedStartTime);
     if (savedEndTime) setEndTime(savedEndTime);
     if (savedPayPerHour) setPayPerHour(Number(savedPayPerHour));
-
+    if (savedBreakTime) setBreakTime(savedBreakTime);
+    if (savedLunchBreak) setLunchBreak(savedLunchBreak === 'true');
   }, []);
+
+  const toggleLunchBreak = (checked) => {
+    setLunchBreak(checked);
+    localStorage.setItem('shift_lunchBreak', checked.toString());
+    
+    
+    window.dispatchEvent(new CustomEvent('breakSettingsChanged'));
+  };
 
   //updating local storage on change
   useEffect(() => {
     localStorage.setItem('shift_startTime', startTime);
     localStorage.setItem('shift_endTime', endTime);
     localStorage.setItem('shift_payPerHour', payPerHour.toString());
+    localStorage.setItem('shift_lunchBreak', lunchBreak.toString());
+    if (lunchBreak) {
+      localStorage.setItem('shift_breakTime', breakTime);
+    }
 
     window.dispatchEvent(new Event('storage'));
-  }, [startTime, endTime, payPerHour]);
+    window.dispatchEvent(new CustomEvent('breakSettingsChanged'));
+  }, [startTime, endTime, payPerHour, lunchBreak, breakTime]);
 
  
   return (
@@ -141,7 +163,7 @@ export default function ShiftProgressTracker() {
         </div>
 
         <div>
-          <div class="block text-sm mb-1 truncate">Hourly Pay</div>
+          <div class="block text-sm mb-1">Hourly Pay</div>
           <input 
             type="number" 
             class="w-full p-2 border text-center border-gray-300 rounded shadow-sm"
@@ -168,13 +190,28 @@ export default function ShiftProgressTracker() {
         <div class="flex items-center mt-4">
           <input 
             type="checkbox" id="lunchBreak" checked={lunchBreak}
-            onChange={(e) => setLunchBreak(e.target.checked)}
+            onChange={(e) => toggleLunchBreak(e.target.checked)}
             class="h-4 w-4 rounded"
           />
           <label htmlFor="lunchBreak" class="ml-2 text-sm text-gray-700">
             30 Minute Lunch Break
           </label>
         </div>
+        
+        {lunchBreak && (
+          <div class="mt-3 flex flex-col items-center">
+            <label htmlFor="breakTime" class="text-sm text-gray-700 mb-1">
+              Break Time
+            </label>
+            <input 
+              type="time"
+              id="breakTime"
+              value={breakTime}
+              onChange={(e) => setBreakTime(e.target.value)}
+              class="text-center w-40 p-2 border border-gray-300 rounded shadow-sm"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
