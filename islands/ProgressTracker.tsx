@@ -181,7 +181,7 @@ export default function ProgressTrackerIsland() {
         <div class="overflow-hidden h-3 mb-4 text-xs flex rounded-full bg-gray-200 relative">
           <div 
             style={{ width: `${progress}%` }} 
-            class="flex flex-col text-center whitespace-nowrap justify-center bg-indigo-500 transition-all duration-300 rounded-full"
+            class="flex flex-col text-center whitespace-nowrap justify-center bg-indigo-500 transition-all duration-300 "
           ></div>
           
           {lunchBreak && breakProgress.end > breakProgress.start && (
